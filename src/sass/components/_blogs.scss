@@ -1,0 +1,29 @@
+.blogs {
+    padding: 80px 50px;
+    background: url('./public/assets/blogs_background.jpg');
+    background-size: cover;
+    &__list {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-gap: 20px;
+    }
+}
+
+.blog {
+    // padding: 20px;
+    background:#fff;
+    // border: 1px solid #000;
+    border-radius: 10px;
+    box-shadow: 0 0 5px #000;
+    overflow: hidden;
+    &__content {
+        padding: 20px;
+    }
+    &__img {
+        height: 200px;
+        object-fit: cover;
+    }
+    &__footer {
+        padding: 0 20px 20px;
+    }
+}
