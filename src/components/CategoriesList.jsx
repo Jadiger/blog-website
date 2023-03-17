@@ -1,8 +1,5 @@
 import React from 'react'
 import { Link, NavLink } from 'react-router-dom'
-// import Swiper from 'swiper'
-import { Swiper,SwiperSlide } from 'swiper/react'
-
 import { categories } from '../base/Categories'
 
 function CategoriesList() {

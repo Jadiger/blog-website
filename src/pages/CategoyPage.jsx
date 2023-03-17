@@ -1,10 +1,11 @@
 import React from 'react'
-
+import { BackImage } from '../styled/style'
+import backImg from '../assets/category_page_background.jpg'
 function CategoyPage() {
   return (
-    <div className='categoryPage'>
+    <BackImage className='categoryPage' backImg={backImg}>
       
-    </div>
+    </BackImage>
   )
 }
 
