@@ -26,7 +26,7 @@ function Blogs({blogs}) {
                                 <p className='blog__text'>
                                     {item.text.slice(0,70)}...
                                 </p>
-                            </div>
+                            
                             <div className="blog__footer">
                                 <div className="blog__date">
                                     <span>
@@ -43,6 +43,7 @@ function Blogs({blogs}) {
                                 <button className="blog__category">
                                     {item.category}
                                 </button>
+                            </div>
                             </div>
                         </div>
                     )

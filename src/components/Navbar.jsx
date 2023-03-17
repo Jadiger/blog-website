@@ -10,7 +10,7 @@ function Navbar({setBlog}) {
     const [navActive,setNavActive] = useState(false)
     const [burgerMenu, setBurgerMenu] = useState(false)
     window.addEventListener('scroll', ()=> {
-      if (pageYOffset > (navRef.current.clientHeight ? navRef.current.clientHeight : 80)) {
+      if (pageYOffset > (navRef.current.clientHeight ? navRef.current.clientHeight : 60)) {
         setNavActive(true)
       } else {
         setNavActive(false)

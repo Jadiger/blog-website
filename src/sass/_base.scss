@@ -1,15 +1,29 @@
-// @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
 @use './variables' as *;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;;
 }
-
+body {
+    padding: 5px 10%;
+    // height: auto;
+    // overflow: hidden;
+}
 a {
     text-decoration: none;
 }
 img {
     width:100%;
+}
+
+.container {
+    // overflow: hidden;
+    width: 70%;
+    // padding: 50px;
+    position: relative;
+    // border: 1px solid #000;
+    top: calc($nav-height + 5px);
+    left: 0;
 }

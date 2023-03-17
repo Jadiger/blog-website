@@ -12,14 +12,6 @@ function Home() {
     console.log(backImg);
   return (
     <>
-      <BackImage  className='main' backImg={backImg}>
-          <div className="main__content">
-              <div className="main__text">
-                  <h1 className="main__text-title">Learn programming with us</h1>
-              </div>
-              <img src={learnImg} alt="" className="main__img" />
-          </div>
-      </BackImage>
       <CategoriesList/>
       
       <Blogs blogs={blogs}/>

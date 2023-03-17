@@ -17,13 +17,15 @@ function Routing() {
     <BlogContext.Provider value={blog}>
         <BrowserRouter>
         <Navbar setBlog={setBlog}/>
-        <Routes>
+        <div className="container">
+          <Routes>
             <Route path='/' element={<Home/>}/>
             <Route path='/blogs/:category' element={<CategoyPage/>}/>
             <Route path='blogs/:category/:id' element={<SingleBlog/>}/>
             <Route path='/about' element={<About/>}/>
             <Route path='/add-blog' element={<AddBlog/>}/>
         </Routes>
+        </div>
     </BrowserRouter>
     </BlogContext.Provider>
   )

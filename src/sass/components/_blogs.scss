@@ -1,13 +1,12 @@
 .blogs {
-    padding: 80px 50px;
-    background: #02aab0;
+    // padding: 80px 50px;
+    // background: #02aab0;
         /* fallback for old browsers */
-        background: -webkit-linear-gradient(to right, #02aab0, #00cdac);
+        // background: -webkit-linear-gradient(to right, #02aab0, #00cdac);
         /* Chrome 10-25, Safari 5.1-6 */
-        background: linear-gradient(to right, #02aab0, #00cdac);
+        // background: linear-gradient(to right, #02aab0, #00cdac);
     &__title {
         text-align: center;
-        color: #fff;
         text-shadow:0 0 5px #000;
         font-size: 50px;
         font-weight: 600;
@@ -15,23 +14,26 @@
     }
     &__list {
         display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        grid-gap: 20px;
+        grid-template-columns: repeat(1, 1fr);
+        grid-gap: 10px;
     }
 }
 
 .blog {
-    // padding: 20px;
+    padding-right: 25px;
+    height: 200px;
+    border: 1px solid gray;
     background:#fff;
-    // border: 1px solid #000;
-    border-radius: 10px;
-    box-shadow: 0 0 5px #000;
     overflow: hidden;
+    display: flex;
+    gap: 5px;
     &__content {
+        width: 70%;
         padding: 20px;
     }
     &__img {
-        height: 200px;
+        width: 30%;
+        height: 100%;
         object-fit: cover;
     }
     &__footer {
