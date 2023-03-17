@@ -26,7 +26,7 @@ export const categories = [
     },
     {
         category : 'React JS',
-        url : 'blogs/reactjs',
+        url : 'blogs/react-js',
         img : './assets/categories-image/react.png'
     },
     {
