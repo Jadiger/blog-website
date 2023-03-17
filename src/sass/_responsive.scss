@@ -131,6 +131,7 @@
             grid-template-columns: repeat(3, 1fr);
     }
         .blogs {
+            padding: 40px 20px;
             &__list {
     
                 grid-template-columns: repeat(2, 1fr);

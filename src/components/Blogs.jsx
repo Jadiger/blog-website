@@ -5,7 +5,7 @@ import backImg from '../assets/blogs_background.jpg'
 function Blogs({blogs}) {
     
   return (
-    <BackImage className="blogs" backImg={backImg}>
+    <div className="blogs" backImg={backImg}>
           <div className="blogs__list">
         {
             blogs.length > 0 ? (
@@ -17,7 +17,7 @@ function Blogs({blogs}) {
                             <div className="blog__content">
                                 <h3 className="blog__title">{item.title}</h3>
                                 <p className='blog__text'>
-                                    {item.text.slice(0,50)}
+                                    {item.text.slice(0,70)}...
                                 </p>
                             </div>
                             <div className="blog__footer">
@@ -43,7 +43,7 @@ function Blogs({blogs}) {
             ) : ''
         }
         </div>
-    </BackImage>
+    </div>
   )
 }
 

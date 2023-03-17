@@ -1,5 +1,10 @@
 .blogs {
     padding: 80px 50px;
+    background: #02aab0;
+        /* fallback for old browsers */
+        background: -webkit-linear-gradient(to right, #02aab0, #00cdac);
+        /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(to right, #02aab0, #00cdac);
     &__list {
         display: grid;
         grid-template-columns: repeat(4, 1fr);

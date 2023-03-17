@@ -46,11 +46,16 @@ function Navbar({setBlog}) {
             }
         </ul>
         <div className="nav__details">
-            <button className="nav__login">
+            <div className="nav__detail">
+                <Link to='/add-blog'>
+                  Add Blog
+                </Link>
+            </div>
+            <div className="nav__detail">
                 <Link to='/login'>
                   Login
                 </Link>
-            </button>
+            </div>
         </div>
     </nav>
   )

@@ -6,6 +6,7 @@ import About from '../pages/About'
 import CategoyPage from '../pages/CategoyPage'
 import Home from '../pages/Home'
 import SingleBlog from '../pages/SingleBlog'
+import AddBlog from '../pages/AddBlog'
 import CategoriesList from './CategoriesList'
 import Navbar from './Navbar'
 
@@ -21,6 +22,7 @@ function Routing() {
             <Route path='/blogs/:category' element={<CategoyPage/>}/>
             <Route path='blogs/:category/:id' element={<SingleBlog/>}/>
             <Route path='/about' element={<About/>}/>
+            <Route path='/add-blog' element={<AddBlog/>}/>
         </Routes>
     </BrowserRouter>
     </BlogContext.Provider>
