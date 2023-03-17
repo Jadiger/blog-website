@@ -1,21 +1,28 @@
 import React from 'react'
 import { BackImage } from '../styled/style';
 import backImg from '../assets/blogs_background.jpg'
+import { Link } from 'react-router-dom';
 
 function Blogs({blogs}) {
     
   return (
     <div className="blogs" backImg={backImg}>
-          <div className="blogs__list">
+          <div className="blogs__title">
+                Blogs
+          </div>
         {
+            
             blogs.length > 0 ? (
+            <div className="blogs__list"> {
                 blogs.map(item=> {
                     const dateFormat = new Date(item.addTime.seconds || item.addTime);
                     return (
                         <div className='blog' key={item.id}>
                             <img src={item.imageURL} alt="" className="blog__img" />
                             <div className="blog__content">
-                                <h3 className="blog__title">{item.title}</h3>
+                                <Link to={`/blogs/${item.category}/${item.id}`}>
+                                    <h3 className="blog__title">{item.title}</h3>
+                                </Link>
                                 <p className='blog__text'>
                                     {item.text.slice(0,70)}...
                                 </p>
@@ -40,9 +47,13 @@ function Blogs({blogs}) {
                         </div>
                     )
                 })
-            ) : ''
+            }</div>) : (
+                <h2 style={{width : '100%', textAlign: 'center',grid: 'none'}}>
+                    There are no blogs in this category
+                </h2>
+            )
         }
-        </div>
+        
     </div>
   )
 }

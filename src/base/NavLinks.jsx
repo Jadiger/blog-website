@@ -12,7 +12,7 @@ export const navList = [
     {
         id : 3,
         name : 'News',
-        url : '/news'
+        url : '/blogs/news'
     },
     {
         id : 4,
