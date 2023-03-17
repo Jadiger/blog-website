@@ -2,7 +2,7 @@ export const categories = [
     {
         category : 'HTML',
         url : 'blogs/html',
-        img : './public/assets/categories-image/html.png'
+        img : './assets/categories-image/html.png'
     },
     {
         category : 'CSS',
