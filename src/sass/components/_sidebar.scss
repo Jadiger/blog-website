@@ -1,0 +1,10 @@
+.sidebar {
+    width: calc(25% - 5px);
+    position: absolute;
+    border: 1px solid rgba(128, 128, 128, 0.692);
+    right: 0;
+    top:0;
+}
+.sidebar__padding {
+    padding: 10px 20px;
+}

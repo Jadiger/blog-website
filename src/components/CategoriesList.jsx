@@ -6,7 +6,7 @@ import { BlogContext } from '../context'
 function CategoriesList() {
   
   return (
-    <div className='categories'>
+    <div className='categories sidebar__padding'>
         <h2 className="categories__title">
             Categories
         </h2>
@@ -20,11 +20,10 @@ function CategoriesList() {
               <Link to={`/${item.url}`} key={index}>
                   
                   <div className='category'>
+                      <h4 className='category__name'> {item.category}</h4>
                       <div className="category__size">
                         {blogSize}
                       </div>
-                      <img src={item.img}/>
-                      <h4 className='category__name'> {item.category}</h4>
                   </div>
               </Link>
             )

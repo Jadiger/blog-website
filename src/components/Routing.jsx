@@ -9,6 +9,9 @@ import SingleBlog from '../pages/SingleBlog'
 import AddBlog from '../pages/AddBlog'
 import CategoriesList from './CategoriesList'
 import Navbar from './Navbar'
+import Sidebar from './Sidebar'
+import News from '../pages/News'
+import AllBlogs from '../pages/AllBlogs'
 
 function Routing() {
     const [blog,setBlog] = useState([])
@@ -18,14 +21,20 @@ function Routing() {
         <BrowserRouter>
         <Navbar setBlog={setBlog}/>
         <div className="container">
-          <Routes>
-            <Route path='/' element={<Home/>}/>
-            <Route path='/blogs/:category' element={<CategoyPage/>}/>
-            <Route path='blogs/:category/:id' element={<SingleBlog/>}/>
-            <Route path='/about' element={<About/>}/>
-            <Route path='/add-blog' element={<AddBlog/>}/>
-        </Routes>
+            <div className="main-menu">
+              <Routes>
+                  <Route path='/' element={<Home/>}/>
+                  <Route path='/' element={<News/>}/>
+                  <Route path='/blogs' element={<AllBlogs/>}/>
+                  <Route path='/blogs/:category' element={<CategoyPage/>}/>
+                  <Route path='blogs/:category/:id' element={<SingleBlog/>}/>
+                  <Route path='/about' element={<About/>}/>
+                  <Route path='/add-blog' element={<AddBlog/>}/>
+              </Routes>
+            </div>
+            <Sidebar/>
         </div>
+        
     </BrowserRouter>
     </BlogContext.Provider>
   )

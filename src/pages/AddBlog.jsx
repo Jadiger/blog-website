@@ -59,7 +59,10 @@ function AddBlog() {
   }, [data]
   )
   return (
-    <BackImage className="addBlog" backImg={backImg}>
+    <div className="addBlog">
+      <div className="addBlog__title">
+          Add Blog
+      </div>
       {loading ? <Loading/> : ''}
       <form className='addBlog__form'
             // ref = {formRef}
@@ -116,7 +119,7 @@ function AddBlog() {
 
         <button className='addBlog__btn'> Add Blog</button>
       </form>
-    </BackImage>
+    </div>
   )
 }
 

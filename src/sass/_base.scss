@@ -4,7 +4,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;;
+    font-family: 'Poppins', sans-serif;
 }
 body {
     padding: 5px 10%;
@@ -19,11 +19,10 @@ img {
 }
 
 .container {
-    // overflow: hidden;
-    width: 70%;
-    // padding: 50px;
+    width: 100%;
     position: relative;
-    // border: 1px solid #000;
-    top: calc($nav-height + 5px);
-    left: 0;
+    top: calc($nav-height + 10px);
+}
+.main-menu {
+    width: 75%;
 }

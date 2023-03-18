@@ -12,8 +12,10 @@ function Home() {
     console.log(backImg);
   return (
     <>
-      <CategoriesList/>
-      
+      {/* <CategoriesList/> */}
+      <div className="blogs__title">
+          New Blogs
+      </div>
       <Blogs blogs={blogs}/>
           
        

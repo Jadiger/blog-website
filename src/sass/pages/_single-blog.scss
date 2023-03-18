@@ -1,47 +1,48 @@
 .sblog {
     // padding: 0 30px 30px;
     &__header {
-        color:#fff;
-        padding: 120px 30px;
-        background-color:#0B2855;
+        width: 100%;
+        padding: 20px 30px;
+        border:1px solid rgba(128, 128, 128, 0.658);
+        margin-bottom: 5px;
+        background: #f1f1f1;
     }
+    &__info {
+        width: 90%;
+        padding-bottom: 5px;
+        margin: 0 auto 5px;
+        border-bottom: 1px solid rgba(128, 128, 128, 0.647);
+        display: flex;
+        justify-content: space-between;
+    }
+
     &__category {
-        text-align: center;
-        
-        margin: 10px 0;
+        font-size: 14px;
+        text-transform: uppercase;
         a {
-            font-size: 1rem;
-            color : rgba(255, 255, 255, 0.79);
+            color : #000;
             padding: 5px 15px;
-            border: 1px solid rgba(255, 255, 255, 0.8);
+        }
+    }
+    &__date {
+        font-size: 12px;
+        span {
+            padding-left: 5px;
         }
     }
     &__title {
         width: 100%;
         text-align: center;
+        padding: 20px 0;
     }
     &__content {
         width: 100%;
-        padding: 0 30px;
-        transform: translateY(-60px);
-    }
-    &__img {
-        display: block;
-        width: 100%;
-        max-width: 600px;
-        margin: 0 auto;
-        border-radius :20px;
-        margin-bottom: 50px;
-        // padding-bottom: 50px;
-        // transform: translateY(-10%);
+        border: 1px solid rgba(128, 128, 128, 0.712);
     }
     &__text {
-        padding: 30px 40px;
-        border: 1px solid #000;
-        border-radius: 20px 0;
-        margin-top: 50px;
-        width: 100%;
-        max-width: 1024px;
-        margin: 0 auto;
+       width: 90%;
+       padding: 25px 0;
+       margin: 0 auto;
+       margin-bottom: 5px;
     }
 }

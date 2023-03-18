@@ -7,9 +7,6 @@ function Blogs({blogs}) {
     
   return (
     <div className="blogs" backImg={backImg}>
-          <div className="blogs__title">
-                Blogs
-          </div>
         {
             
             blogs.length > 0 ? (
@@ -20,31 +17,29 @@ function Blogs({blogs}) {
                         <div className='blog' key={item.id}>
                             <img src={item.imageURL} alt="" className="blog__img" />
                             <div className="blog__content">
-                                <Link to={`/blogs/${item.category}/${item.id}`}>
-                                    <h3 className="blog__title">{item.title}</h3>
-                                </Link>
-                                <p className='blog__text'>
-                                    {item.text.slice(0,70)}...
-                                </p>
-                            
-                            <div className="blog__footer">
+                                <div className="blog__category">
+                                    <Link to={`/blogs/${item.category}`}>{item.category}</Link>
+                                </div>
+                                <div className="blog__title">
+                                    <Link to={`/blogs/${item.category}/${item.id}`}>
+                                        {item.title.slice(0,80)}...
+                                    </Link>
+                                </div>
+                    
                                 <div className="blog__date">
-                                    <span>
-                                        {dateFormat.getHours()>9 ? `${dateFormat.getHours()} ` :`0${dateFormat.getHours()} `} :
-                                        {dateFormat.getMinutes()> 9 ? ` ${dateFormat.getMinutes()}  ` : `                                                                       0${dateFormat.getMinutes()}  `}
-                                    </span> 
                                     <span>
                                         {dateFormat.getDate()}.
                                         {(dateFormat.getMonth() + 1) < 9 ? `0${dateFormat.getMonth() + 1}`
                                         : dateFormat.getMonth()}.
-                                        {dateFormat.getFullYear()}
+                                        {dateFormat.getFullYear()},
                                     </span>
+                                    <span>
+                                        {dateFormat.getHours()>9 ? `${dateFormat.getHours()} ` :`0${dateFormat.getHours()} `} :
+                                        {dateFormat.getMinutes()> 9 ? ` ${dateFormat.getMinutes()}  ` : `                                                                       0${dateFormat.getMinutes()}  `}
+                                    </span> 
                                 </div>
-                                <button className="blog__category">
-                                    {item.category}
-                                </button>
                             </div>
-                            </div>
+                            
                         </div>
                     )
                 })

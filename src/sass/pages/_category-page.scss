@@ -1,8 +1,7 @@
 @use '../variables' as *;
 .categoryPage {
     width: 100%;
-    min-height: 50vh;
-    padding: $nav-height 30px;
+    padding: 50px 20px;
     // background: url('/public/assets/category_page_background.jpg');
     background-size: cover;
     background-position:center;
@@ -11,7 +10,7 @@
     align-items: center;
     &__title {
         color: #fff;
-        font-size: 70px;
+        font-size: 50px;
         text-transform: uppercase;
     }
 }
