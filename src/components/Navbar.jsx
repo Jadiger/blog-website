@@ -1,9 +1,16 @@
-import React, { useContext, useRef, useState } from 'react'
-import { Link, NavLink } from 'react-router-dom';
+import React, { useContext, useEffect, useRef, useState } from 'react'
+import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { navList } from '../base/NavLinks';
 import { BlogContext } from '../context'
 
 function Navbar({setBlog}) {
+  const {pathname} = useLocation()
+  useEffect(()=> {
+        window.scrollTo({
+          top: 100,
+          behavior: "smooth",
+        });
+  },[pathname])
     const myBlog = useContext(BlogContext)
     // console.log(myBlog);
     const navRef = useRef('')
