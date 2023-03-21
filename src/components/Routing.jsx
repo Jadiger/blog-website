@@ -7,11 +7,11 @@ import CategoyPage from '../pages/CategoyPage'
 import Home from '../pages/Home'
 import SingleBlog from '../pages/SingleBlog'
 import AddBlog from '../pages/AddBlog'
-import CategoriesList from './CategoriesList'
 import Navbar from './Navbar'
 import Sidebar from './Sidebar'
 import News from '../pages/News'
 import AllBlogs from '../pages/AllBlogs'
+import Footer from './Footer'
 
 function Routing() {
     const [blog,setBlog] = useState([])
@@ -33,7 +33,11 @@ function Routing() {
               </Routes>
             </div>
             <Sidebar/>
+            
         </div>
+        <Footer/>
+        
+        
         
     </BrowserRouter>
     </BlogContext.Provider>

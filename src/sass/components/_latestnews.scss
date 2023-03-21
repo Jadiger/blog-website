@@ -1,0 +1,32 @@
+.lnews {
+    margin-top: 5px;
+    padding: 20px 10px;
+    width: 100%;
+    background-color: #f1f1f1;
+    border: 1px solid rgba(128, 128, 128, 0.692);
+    &__title {
+            font-size: 25px;
+            font-weight: 500;
+            // color : #fff;
+            text-align: center;
+            margin-bottom: 30px;
+    }
+    &__content {
+        padding: 0 10px;
+        font-size: 14px;
+        a {
+            color : #000;
+        }
+    }
+    &__item {
+        font-weight: 500;
+        padding: 10px 0;
+        border-bottom:1px solid rgba(128, 128, 128, 0.692);
+    }
+    &__all {
+        text-align: center;
+        margin-top: 5px;
+        padding: 5px;
+        border: 1px solid rgba(128, 128, 128, 0.692);
+    }
+}

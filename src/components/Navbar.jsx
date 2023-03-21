@@ -51,13 +51,13 @@ function Navbar({setBlog}) {
                 )
               })
             }
+            <li className='nav__link' key='addblog123'>
+                <NavLink to='/add-blog'>
+                    Add Blog
+                </NavLink>
+            </li>
         </ul>
         <div className="nav__details">
-            <div className="nav__detail">
-                <Link to='/add-blog'>
-                  Add Blog
-                </Link>
-            </div>
             <div className="nav__detail">
                 <Link to='/login'>
                   Login

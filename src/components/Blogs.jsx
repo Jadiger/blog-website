@@ -1,17 +1,22 @@
-import React from 'react'
-import { BackImage } from '../styled/style';
-import backImg from '../assets/blogs_background.jpg'
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react'
+import { Link, useLocation } from 'react-router-dom';
+
+
 
 function Blogs({blogs}) {
-    
+    const [size,setSize] = useState(5)
+    const path = useLocation().pathname
+    function showMore() {
+        setSize(size + 10)
+    }
+    console.log(path);
   return (
-    <div className="blogs" backImg={backImg}>
+    <div className="blogs">
         {
             
             blogs.length > 0 ? (
             <div className="blogs__list"> {
-                blogs.map(item=> {
+                blogs.slice(0,size).map(item=> {
                     const dateFormat = new Date(item.addTime.seconds || item.addTime);
                     return (
                         <div className='blog' key={item.id}>
@@ -43,7 +48,14 @@ function Blogs({blogs}) {
                         </div>
                     )
                 })
-            }</div>) : (
+                
+            }
+                {
+                    (size < blogs.length && path != '/') ? (
+                        <div className="blogs__more" onClick={showMore}>Show More</div>
+                    ) : ''
+                }
+            </div>) : (
                 <h2 style={{width : '100%', textAlign: 'center',grid: 'none'}}>
                     There are no blogs in this category
                 </h2>

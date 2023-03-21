@@ -1,15 +1,10 @@
 import React, { useContext, useState } from 'react'
-import CategoriesList from '../components/CategoriesList'
-import GetBlog from '../components/GetBlog';
-import learnImg from '../assets/learn.png';
 import { BlogContext } from '../context';
 import Blogs from '../components/Blogs';
-import { BackImage } from '../styled/style';
-import backImg from '../assets/home_background.jpg'
+import { Link } from 'react-router-dom';
 function Home() {
     // const [blogs,setBlogs] = useState([])
-    const blogs = useContext(BlogContext)
-    console.log(backImg);
+    const blogs = useContext(BlogContext).filter(item=> { return item.category !== 'news'}).slice(0,10)
   return (
     <>
       {/* <CategoriesList/> */}
@@ -17,7 +12,9 @@ function Home() {
           New Blogs
       </div>
       <Blogs blogs={blogs}/>
-          
+      <div className="blogs__all">
+         <Link to='/blogs'>View all...</Link>
+      </div>
        
     </>
   )

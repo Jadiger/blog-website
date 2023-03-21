@@ -1,16 +1,17 @@
 @use '../variables' as *;
 .categoryPage {
     width: 100%;
-    padding: 50px 20px;
+    padding: 35px 20px;
     // background: url('/public/assets/category_page_background.jpg');
     background-size: cover;
     background-position:center;
     display: flex;
     justify-content: center;
     align-items: center;
+    border: 1px solid rgba(128, 128, 128, 0.685);
     &__title {
-        color: #fff;
-        font-size: 50px;
+        // color: #fff;
+        font-size: 45px;
         text-transform: uppercase;
     }
 }

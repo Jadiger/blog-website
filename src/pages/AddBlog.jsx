@@ -2,8 +2,6 @@ import React, { useEffect, useRef, useState } from 'react'
 import { storage, db } from '../firebase/config'
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage'
 import { addDoc, collection, serverTimestamp } from 'firebase/firestore'
-import { BackImage } from '../styled/style'
-import backImg from '../assets/category_page_background.jpg'
 import Loading from '../components/Loading'
 function AddBlog() {
 
