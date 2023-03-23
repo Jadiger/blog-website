@@ -20,7 +20,7 @@ function Blogs({blogs}) {
                     const dateFormat = new Date(item.addTime.seconds || item.addTime);
                     return (
                         <div className='blog' key={item.id}>
-                            <img src={item.imageURL || item.imgURLs[0]} alt="" className="blog__img" />
+                            <img src={item.imgURLs[0]} alt="" className="blog__img" />
                             <div className="blog__content">
                                 <div className="blog__category">
                                     <Link to={`/blogs/${item.category}`}>{item.category}</Link>

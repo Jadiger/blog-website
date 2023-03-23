@@ -13,15 +13,5 @@ export const navList = [
         id : 3,
         name : 'News',
         url : '/blogs/news'
-    },
-    {
-        id : 4,
-        name : 'About',
-        url : '/about'
-    },
-    {
-        id : 5,
-        name : 'Contact',
-        url : '/contact'
     }
 ]

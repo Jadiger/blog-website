@@ -1,19 +1,29 @@
+import { ref, remove } from 'firebase/database'
+import { deleteDoc, doc } from 'firebase/firestore'
 import React, { useContext } from 'react'
-import { useParams } from 'react-router'
+import { useNavigate, useParams } from 'react-router'
 import { Link } from 'react-router-dom'
 import { BlogContext } from '../context'
+import { db } from '../firebase/config'
+import deleteIcon from '../assets/delete.png'
 
-function SingleBlog() {
+function SingleBlog({userActive}) {
   const {id,category} = useParams()
+  const navigate = useNavigate()
   const blog = useContext(BlogContext).filter(item=> {
     return (item.id == id)
   })[0]
   const dateFormat = new Date(blog?.addTime?.seconds || blog?.addTime);
-  console.log(dateFormat);
+
+  function handleDelete(blog) {
+    deleteDoc(doc(db, 'blogs' ,`${blog.id}`))
+    navigate('/')
+  }
   return (
     blog? (
       <div className='sblog'>
             <div className="sblog__header">
+                
               <div className="sblog__info">
                   <div className="sblog__category">
                       <Link to={`/blogs/${category}`}>{blog.category}</Link>
@@ -34,6 +44,17 @@ function SingleBlog() {
               </div>
               <h3 className="sblog__title">
                 {blog.title}
+                {
+                  userActive ? (
+                  <div className='sblog__delete'
+                      onClick={()=> {
+                        handleDelete(blog)
+                      }}
+                  >
+                      <img src={deleteIcon}/>
+                  </div>
+            ) : ''
+                }
               </h3>
               
             </div>
@@ -43,6 +64,7 @@ function SingleBlog() {
                     
                 </p>
             </div>
+            
       </div>
     ) : ''
   )

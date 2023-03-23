@@ -14,7 +14,7 @@ import AllBlogs from '../pages/AllBlogs'
 import Footer from './Footer'
 import Login from '../user/Login'
 import Signup from '../user/SignUp'
-
+import Error404 from '../pages/Error404'
 function Routing() {
     const [blog,setBlog] = useState([])
     const [userActive,setUserActive] = useState(null)
@@ -30,12 +30,13 @@ function Routing() {
                   <Route path='/' element={<News/>}/>
                   <Route path='/blogs' element={<AllBlogs/>}/>
                   <Route path='/blogs/:category' element={<CategoyPage/>}/>
-                  <Route path='blogs/:category/:id' element={<SingleBlog/>}/>
+                  <Route path='blogs/:category/:id' element={<SingleBlog userActive={userActive}/>}/>
                   <Route path='/about' element={<About/>}/>
 
                   <Route path='/add-blog' element={userActive? <AddBlog/> : ''}/>
-                  <Route path='/login' element={<Login userActive={userActive} setUserActive={setUserActive}/>}/>
-                  <Route path='/signup' element={<Signup/>}/>
+                  <Route path='/login' element={userActive? <Error404/> :
+                      <Login userActive={userActive} setUserActive={setUserActive}/>}/>
+                  <Route path='/signup' element={userActive? <Error404/> : <Signup/>}/>
               </Routes>
             </div>
             <Sidebar/>

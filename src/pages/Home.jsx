@@ -4,7 +4,9 @@ import Blogs from '../components/Blogs';
 import { Link } from 'react-router-dom';
 function Home() {
   const blogs = useContext(BlogContext).filter(item=> { return item.category !== 'news'}).slice(0,10)
-  const randomBlog = blogs.length> 0 ? blogs[Math.floor(Math.random()*(blogs.length))] : false
+  const randomBlog = blogs.length> 0 ? blogs.filter(item=> {
+    item.category!='news'
+  })[Math.floor(Math.random()*(blogs.length))] : false
   // console.log(randomNum);
   return (
     <>

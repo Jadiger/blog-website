@@ -66,13 +66,13 @@ function Navbar({userActive,setUserActive}) {
             <div className="nav__detail">
                 {
                 userActive ? (
-                  <button className="log-out" onClick={()=> {
+                  <span className="log-out" onClick={()=> {
                   window.localStorage.removeItem('useruid')
                   setUserActive(null)
                   navigate('/')
                 }}>
                   Log Out
-                </button>
+                </span>
                 ) :
 
                 <Link to='/login'>
