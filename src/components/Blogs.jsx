@@ -4,7 +4,7 @@ import { Link, useLocation } from 'react-router-dom';
 
 
 function Blogs({blogs}) {
-    const [size,setSize] = useState(5)
+    const [size,setSize] = useState(10)
     const path = useLocation().pathname
     function showMore() {
         setSize(size + 10)
@@ -20,14 +20,14 @@ function Blogs({blogs}) {
                     const dateFormat = new Date(item.addTime.seconds || item.addTime);
                     return (
                         <div className='blog' key={item.id}>
-                            <img src={item.imageURL} alt="" className="blog__img" />
+                            <img src={item.imageURL || item.imgURLs[0]} alt="" className="blog__img" />
                             <div className="blog__content">
                                 <div className="blog__category">
                                     <Link to={`/blogs/${item.category}`}>{item.category}</Link>
                                 </div>
                                 <div className="blog__title">
                                     <Link to={`/blogs/${item.category}/${item.id}`}>
-                                        {item.title.slice(0,80)}...
+                                        {item.title.length > 80 ? item.title.slice(0,80)+'...' : item.title}
                                     </Link>
                                 </div>
                     

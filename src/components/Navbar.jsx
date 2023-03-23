@@ -3,7 +3,8 @@ import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { navList } from '../base/NavLinks';
 import { BlogContext } from '../context'
 
-function Navbar({setBlog}) {
+function Navbar({userActive,setUserActive}) {
+  const navigate = useNavigate()
   const {pathname} = useLocation()
   useEffect(()=> {
         window.scrollTo({
@@ -51,17 +52,33 @@ function Navbar({setBlog}) {
                 )
               })
             }
-            <li className='nav__link' key='addblog123'>
+            {
+              userActive ? (
+                <li className='nav__link' key='addblog123'>
                 <NavLink to='/add-blog'>
                     Add Blog
                 </NavLink>
             </li>
+              ) : ''
+            }
         </ul>
         <div className="nav__details">
             <div className="nav__detail">
+                {
+                userActive ? (
+                  <button className="log-out" onClick={()=> {
+                  window.localStorage.removeItem('useruid')
+                  setUserActive(null)
+                  navigate('/')
+                }}>
+                  Log Out
+                </button>
+                ) :
+
                 <Link to='/login'>
                   Login
                 </Link>
+                }
             </div>
         </div>
     </nav>

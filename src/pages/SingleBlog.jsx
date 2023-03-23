@@ -38,9 +38,9 @@ function SingleBlog() {
               
             </div>
             <div className="sblog__content">
-                <img src={blog.imageURL} className="sblog__img" />
-                <p className="sblog__text">
-                    {blog.text}
+               
+                <p className="sblog__text" dangerouslySetInnerHTML={{__html : blog.text}}>
+                    
                 </p>
             </div>
       </div>

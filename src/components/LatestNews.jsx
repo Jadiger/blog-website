@@ -6,7 +6,7 @@ function LatestNews() {
   const news = useContext(BlogContext).filter(item=> {
     return (item.category == 'news')
   })
-  console.log(news);
+//   console.log(news);
   return (
     <div className='lnews sidebar__padding'>
         <div className="lnews__title">

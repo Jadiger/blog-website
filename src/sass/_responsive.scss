@@ -141,6 +141,15 @@
             padding: 10px 15px;
         }
     }
+    .randomBlog {
+        &__info {
+            padding: 10px;
+        }
+        &__title {
+            padding-bottom: 5px;
+            margin-top: 5px;
+        }
+    }
 }
 
 @media screen and (max-width: 300px) {

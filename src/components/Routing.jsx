@@ -12,14 +12,17 @@ import Sidebar from './Sidebar'
 import News from '../pages/News'
 import AllBlogs from '../pages/AllBlogs'
 import Footer from './Footer'
+import Login from '../user/Login'
+import Signup from '../user/SignUp'
 
 function Routing() {
     const [blog,setBlog] = useState([])
+    const [userActive,setUserActive] = useState(null)
     getBlog(setBlog)
   return (
     <BlogContext.Provider value={blog}>
         <BrowserRouter>
-        <Navbar setBlog={setBlog}/>
+        <Navbar userActive={userActive} setUserActive={setUserActive}/>
         <div className="container">
             <div className="main-menu">
               <Routes>
@@ -29,7 +32,10 @@ function Routing() {
                   <Route path='/blogs/:category' element={<CategoyPage/>}/>
                   <Route path='blogs/:category/:id' element={<SingleBlog/>}/>
                   <Route path='/about' element={<About/>}/>
-                  <Route path='/add-blog' element={<AddBlog/>}/>
+
+                  <Route path='/add-blog' element={userActive? <AddBlog/> : ''}/>
+                  <Route path='/login' element={<Login userActive={userActive} setUserActive={setUserActive}/>}/>
+                  <Route path='/signup' element={<Signup/>}/>
               </Routes>
             </div>
             <Sidebar/>

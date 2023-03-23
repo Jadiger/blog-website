@@ -24,3 +24,34 @@
         }
     }
 }
+.randomBlog {
+    position: relative;
+    border:1px solid rgba(128, 128, 128, 0.679);
+    margin-bottom: 5px;
+    a {
+        color: #000;
+    }
+    &__info {
+        width: 100%;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        padding: 20px;
+        background-color: rgba(255, 255, 255, 0.674);
+    }
+    &__category {
+        text-transform: capitalize;
+        font-size: 14px;
+        line-height: 20px;
+        height: 20px;
+        padding-left: 10px;
+        border-left: 3px solid rgb(16, 64, 176);
+    }
+    &__title {
+        text-align: center;
+        font-size: 25px;
+        font-weight: 600;
+        padding-bottom: 15px;
+        margin-top: 15px;
+    }
+}
