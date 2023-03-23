@@ -78,7 +78,7 @@ function AddBlog() {
                 async () => {
                     await getDownloadURL(uploadTask.snapshot.ref).then((downloadURLs) => {
                         setImgURLs(prevState => [...prevState, downloadURLs])
-                        setTextValue(prev=> prev +`<img src='${downloadURLs}'/> `)
+                        setTextValue(prev=> `<img src='${downloadURLs}'/> `+prev)
                         console.log("File available at", downloadURLs);
                     });
                 }
