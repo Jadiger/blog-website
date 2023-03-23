@@ -27,7 +27,6 @@ function Routing() {
             <div className="main-menu">
               <Routes>
                   <Route path='/' element={<Home/>}/>
-                  <Route path='/' element={<News/>}/>
                   <Route path='/blogs' element={<AllBlogs/>}/>
                   <Route path='/blogs/:category' element={<CategoyPage/>}/>
                   <Route path='blogs/:category/:id' element={<SingleBlog userActive={userActive}/>}/>

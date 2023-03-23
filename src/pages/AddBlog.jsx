@@ -110,6 +110,7 @@ function AddBlog() {
             onSubmit={(e)=> {
                 e.preventDefault()
                 addBlog(e)
+                setTextValue(null)
                       }}
       >
         <label>
@@ -143,7 +144,7 @@ function AddBlog() {
         <label> <p>Add Image</p>
           <input type='file'
                   className='addBlog__input'
-                  accept="image/png, image/jpg, image/jpeg"
+                  accept="image/png, image/jpg, image/jpeg, image/webp"
                   onChange={(e)=> {
                     // setImage(e.target.files)
                     setImages(e.target.files);
@@ -157,10 +158,10 @@ function AddBlog() {
         <label> <p>Description</p>
           <textarea placeholder='blog-text ...'
                     className='addBlog__input addBlog__text'
+                    defaultValue={textValue? textValue : ''}
                     onChange={(e)=> {
                       setText(e.target.value)
                     }}
-                    defaultValue={textValue}
                     
           />
         </label>
