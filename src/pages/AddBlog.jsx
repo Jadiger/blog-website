@@ -3,9 +3,8 @@ import { storage, db } from '../firebase/config'
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage'
 import { addDoc, collection, serverTimestamp } from 'firebase/firestore'
 import Loading from '../components/Loading'
-function AddBlog() {
+function AddBlog({setAlert,setAlertClass}) {
   const [category,setCategory] = useState('news')
-  // const [data,setData] = useState(initialState)
   const formRef = useRef(null)
   const [title,setTitle] = useState(null)
   const [text,setText] = useState(null)
@@ -20,31 +19,35 @@ function AddBlog() {
     category : category,
     imgURLs : imgURLs
   }
-  // console.log(textValue);
-  // console.log(images);
-  // console.log(imgURLs);
-  // console.log(progress);
   console.log(data);
   function addBlog(e) {
     if(text && title && (imgURLs.length> 0)) {
-      // setLoading(true)
+      setAlert('Blog Added')
+      setAlertClass('alert__success')
     addDoc(collection(db, "blogs"), {
       ...data, addTime : Date.now()
     })
-    // setLoading(false)
-    console.log(db.toJSON);
     e.target.reset()
     } else if (!title) {
-      alert('please enter a blog title')
+      setAlert('please enter a blog title')
+      setAlertClass('alert__error')
     } else if (!(imgURLs.length>0)) {
-      alert('please add a picture to the blog')
+      setAlert('please add a picture to the blog')
+      setAlertClass('alert__error')
     } else if (!text) {
-      alert('please add text to the blog')
+      setAlert('please add text to the blog')
+      setAlertClass('alert__error')
     }
     
     else {
-      alert('Error')
+      setAlert('Error')
+      setAlertClass('alert__error')
     }
+
+    setTimeout(()=> {
+      setAlertClass('')
+      setAlert('')
+    },2000)
   }
   useEffect(()=> {
     if(images.length>0) {

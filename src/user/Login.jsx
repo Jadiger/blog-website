@@ -3,7 +3,7 @@ import {  signInWithEmailAndPassword   } from 'firebase/auth';
 import { auth } from '../firebase/config';
 import { NavLink, useNavigate } from 'react-router-dom'
  
-const Login = ({setUserActive}) => {
+const Login = ({setUserActive,setAlert,setAlertClass}) => {
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -14,6 +14,8 @@ const Login = ({setUserActive}) => {
         .then((userCredential) => {
             // Signed in
             const user = userCredential.user;
+            setAlert('Login Successful!')
+            setAlertClass('alert__success')
             navigate("/")
             console.log(user);
             window.localStorage.setItem('useruid',user.uid)
@@ -22,9 +24,14 @@ const Login = ({setUserActive}) => {
         .catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
-            console.log(errorCode, errorMessage)
+            setAlert(String(error.message))
+            setAlertClass('alert__error')
         });
-       
+        
+        setTimeout(()=> {
+            setAlert('')
+            setAlertClass('')
+        },2000)
     }
  
     return(

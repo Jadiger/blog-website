@@ -3,7 +3,7 @@ import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { navList } from '../base/NavLinks';
 import { BlogContext } from '../context'
 
-function Navbar({userActive,setUserActive}) {
+function Navbar({userActive,setUserActive,alert,alertClass}) {
   const navigate = useNavigate()
   const {pathname} = useLocation()
   useEffect(()=> {
@@ -80,6 +80,9 @@ function Navbar({userActive,setUserActive}) {
                 </Link>
                 }
             </div>
+        </div>
+        <div className={`alert ${alertClass}`}>
+          {alert}
         </div>
     </nav>
   )

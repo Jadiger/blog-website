@@ -3,7 +3,7 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import {  createUserWithEmailAndPassword  } from 'firebase/auth';
 import { auth } from '../firebase/config';
  
-const Signup = () => {
+const Signup = ({setAlert,setAlertClass}) => {
     const navigate = useNavigate();
  
     const [email, setEmail] = useState('')
@@ -16,32 +16,37 @@ const Signup = () => {
         .then((userCredential) => {
             // Signed in
             const user = userCredential.user;
-            console.log(user);
+            setAlert('Successful Registration')
+            setAlertClass('alert__success')
             navigate("/login")
             // ...
         })
         .catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
-            console.log(errorCode, errorMessage);
+            setAlert(String(error.message))
+            setAlertClass('alert__error')
             // ..
         });
- 
+        setTimeout(()=> {
+            setAlert('')
+            setAlertClass('')
+        },2000)
    
     }
  
   return (
-    <main >        
-        <section>
-            <div>
-                <div>                  
-                    <h1> FocusApp </h1>                                                                            
-                    <form>                                                                                            
+    <div className='sign' >        
+        <div className='sign__block'>
+                            
+                    <div className='sign__title'> Sign Up</div>
+                    <form className='sign__form'>
                         <div>
-                            <label htmlFor="email-address">
+                            <label htmlFor="email-address" className='sign__label'>
                                 Email address
                             </label>
                             <input
+                                className='sign__input'
                                 type="email"
                                 label="Email address"
                                 value={email}
@@ -52,10 +57,11 @@ const Signup = () => {
                         </div>
 
                         <div>
-                            <label htmlFor="password">
+                            <label htmlFor="password" className='sign__label'>
                                 Password
                             </label>
                             <input
+                                className='sign__input'
                                 type="password"
                                 label="Create password"
                                 value={password}
@@ -66,6 +72,7 @@ const Signup = () => {
                         </div>                                             
                         
                         <button
+                            className='sign__button'
                             type="submit" 
                             onClick={onSubmit}                        
                         >  
@@ -80,10 +87,9 @@ const Signup = () => {
                             Sign in
                         </NavLink>
                     </p>                   
-                </div>
-            </div>
-        </section>
-    </main>
+               
+        </div>
+    </div>
   )
 }
  

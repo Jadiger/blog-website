@@ -18,24 +18,45 @@ import Error404 from '../pages/Error404'
 function Routing() {
     const [blog,setBlog] = useState([])
     const [userActive,setUserActive] = useState(null)
+    const [alert, setAlert] = useState('Info')
+    const [alertClass, setAlertClass] = useState('')
     getBlog(setBlog)
   return (
     <BlogContext.Provider value={blog}>
         <BrowserRouter>
-        <Navbar userActive={userActive} setUserActive={setUserActive}/>
+        <Navbar userActive={userActive} setUserActive={setUserActive} alert={alert} alertClass={alertClass}/>
         <div className="container">
             <div className="main-menu">
               <Routes>
                   <Route path='/' element={<Home/>}/>
                   <Route path='/blogs' element={<AllBlogs/>}/>
                   <Route path='/blogs/:category' element={<CategoyPage/>}/>
-                  <Route path='blogs/:category/:id' element={<SingleBlog userActive={userActive}/>}/>
+                  <Route path='blogs/:category/:id' element={
+                      <SingleBlog
+                                userActive={userActive}
+                                setAlert={setAlert}
+                                setAlertClass={setAlertClass}
+                      />}/>
                   <Route path='/about' element={<About/>}/>
 
-                  <Route path='/add-blog' element={userActive? <AddBlog/> : ''}/>
+                  <Route path='/add-blog' element={userActive?
+                        <AddBlog
+                                alert={alert}
+                                setAlert={setAlert} 
+                                setAlertClass={setAlertClass}
+                                />
+                        : ''}/>
                   <Route path='/login' element={userActive? <Error404/> :
-                      <Login userActive={userActive} setUserActive={setUserActive}/>}/>
-                  <Route path='/signup' element={userActive? <Error404/> : <Signup/>}/>
+                      <Login
+                            userActive={userActive}
+                            setUserActive={setUserActive}
+                            setAlert={setAlert}
+                            setAlertClass={setAlertClass}
+                            />}/>
+                  <Route path='/signup' element={userActive? <Error404/> :
+                          <Signup setAlert={setAlert}
+                                  setAlertClass= {setAlertClass}
+                                  />}/>
               </Routes>
             </div>
             <Sidebar/>

@@ -7,7 +7,7 @@ import { BlogContext } from '../context'
 import { db } from '../firebase/config'
 import deleteIcon from '../assets/delete.png'
 
-function SingleBlog({userActive}) {
+function SingleBlog({userActive,setAlert,setAlertClass}) {
   const {id,category} = useParams()
   const navigate = useNavigate()
   const blog = useContext(BlogContext).filter(item=> {
@@ -17,7 +17,13 @@ function SingleBlog({userActive}) {
 
   function handleDelete(blog) {
     deleteDoc(doc(db, 'blogs' ,`${blog.id}`))
+    setAlert('Blog Deleted!')
+    setAlertClass('alert__success')
     navigate('/')
+    setTimeout(()=> {
+      setAlert('')
+      setAlertClass('')
+    },2000)
   }
   return (
     blog? (
