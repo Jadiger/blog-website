@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useRef, useState } from 'react'
 import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { navList } from '../base/NavLinks';
 import { BlogContext } from '../context'
+import Loading from './Loading';
 
 function Navbar({userActive,setUserActive,alert,alertClass}) {
   const navigate = useNavigate()
@@ -13,7 +14,6 @@ function Navbar({userActive,setUserActive,alert,alertClass}) {
         });
   },[pathname])
     const myBlog = useContext(BlogContext)
-    // console.log(myBlog);
     const navRef = useRef('')
     const [navActive,setNavActive] = useState(false)
     const [burgerMenu, setBurgerMenu] = useState(false)
@@ -27,6 +27,7 @@ function Navbar({userActive,setUserActive,alert,alertClass}) {
 
   return (
     <nav className={`nav ${navActive ? 'nav_active' : ''}`} ref={navRef}>
+      {myBlog.length> 0 ?'': <Loading/>}
         <div
             className={`burger_menu ${burgerMenu? 'burger_menu_active': ''}`}
             onClick={()=> {
