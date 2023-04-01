@@ -1,15 +1,16 @@
 import React, { useContext } from 'react'
 import { useParams } from 'react-router'
-import { BlogContext } from '../context'
+
 import Blogs from '../components/Blogs'
+import { Context } from '../context'
 function CategoyPage() {
   const category = useParams().category
-  const blogs = useContext(BlogContext).filter(item=> {
+  const {state} = useContext(Context)
+  const blogs = state.blogs.filter(item=> {
     return(
       item.category == category
     )
   })
-  console.log(blogs);
   return (
     <div className="category-page">
         <div className='categoryPage'>

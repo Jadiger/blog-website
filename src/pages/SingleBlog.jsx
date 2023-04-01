@@ -3,26 +3,28 @@ import { deleteDoc, doc } from 'firebase/firestore'
 import React, { useContext } from 'react'
 import { useNavigate, useParams } from 'react-router'
 import { Link } from 'react-router-dom'
-import { BlogContext } from '../context'
+import { Context } from '../context'
 import { db } from '../firebase/config'
 import deleteIcon from '../assets/delete.png'
 
-function SingleBlog({userActive,setAlert,setAlertClass}) {
+function SingleBlog() {
+  const {state,dispatch} = useContext(Context)
+  const {userActive} = state
   const {id,category} = useParams()
   const navigate = useNavigate()
-  const blog = useContext(BlogContext).filter(item=> {
+  const blog = state.blogs.filter(item=> {
     return (item.id == id)
   })[0]
   const dateFormat = new Date(blog?.addTime?.seconds || blog?.addTime);
 
   function handleDelete(blog) {
     deleteDoc(doc(db, 'blogs' ,`${blog.id}`))
-    setAlert('Blog Deleted!')
-    setAlertClass('alert__success')
+    dispatch({type: 'SET_ALERT', payload : 'Blog Deleted!'})
+    dispatch({type: 'SET_ALERT_CLASS', payload : 'alert__success'})
     navigate('/')
     setTimeout(()=> {
-      setAlert('')
-      setAlertClass('')
+      dispatch({type: 'SET_ALERT', payload : ''})
+    dispatch({type: 'SET_ALERT_CLASS', payload : ''})
     },2000)
   }
   return (

@@ -1,10 +1,11 @@
 import React, { useContext } from 'react'
 import { BackImage } from '../styled/style'
-import { BlogContext } from '../context'
+import { Context } from '../context'
 import Blogs from '../components/Blogs'
 function AllBlogs() {
   const category = 'All Blogs'
-  const blogs = useContext(BlogContext).filter(item=> {
+  const {state} = useContext(Context)
+  const blogs = state.blogs.filter(item=> {
     return(
       item.category !== 'news'
     )

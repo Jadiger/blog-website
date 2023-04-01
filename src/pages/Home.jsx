@@ -1,9 +1,10 @@
 import React, { useContext, useState } from 'react'
-import { BlogContext } from '../context';
+import { Context } from '../context';
 import Blogs from '../components/Blogs';
 import { Link } from 'react-router-dom';
 function Home() {
-  const blogs = useContext(BlogContext).filter(item=> { return item.category != 'news'}).slice(0,10)
+  const {state,dispatch} = useContext(Context)
+  const blogs = state.blogs.filter(item=> { return item.category != 'news'}).slice(0,10)
   const randomBlog = blogs.length> 0 ? blogs[Math.floor(Math.random()*(blogs.length))] : false
   // console.log(randomNum);
   return (

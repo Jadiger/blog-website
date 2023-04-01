@@ -1,7 +1,6 @@
-import React, { useState } from 'react'
+import React, { useContext } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { getBlog } from '../base/getBlog'
-import { BlogContext } from '../context'
 import About from '../pages/About'
 import CategoyPage from '../pages/CategoyPage'
 import Home from '../pages/Home'
@@ -14,48 +13,25 @@ import Footer from './Footer'
 import Login from '../user/Login'
 import Signup from '../user/SignUp'
 import Error404 from '../pages/Error404'
+import { Context } from '../context'
 function Routing() {
-    const [blog,setBlog] = useState([])
-    const [userActive,setUserActive] = useState(null)
-    const [alert, setAlert] = useState('Info')
-    const [alertClass, setAlertClass] = useState('')
-    getBlog(setBlog)
+  getBlog()
+  const {state} = useContext(Context)
+  const {userActive,blogs} = state
   return (
-    <BlogContext.Provider value={blog}>
         <BrowserRouter>
-        <Navbar userActive={userActive} setUserActive={setUserActive} alert={alert} alertClass={alertClass}/>
+        <Navbar/>
         <div className="container">
             <div className="main-menu">
               <Routes>
                   <Route path='/' element={<Home/>}/>
                   <Route path='/blogs' element={<AllBlogs/>}/>
                   <Route path='/blogs/:category' element={<CategoyPage/>}/>
-                  <Route path='blogs/:category/:id' element={
-                      <SingleBlog
-                                userActive={userActive}
-                                setAlert={setAlert}
-                                setAlertClass={setAlertClass}
-                      />}/>
+                  <Route path='blogs/:category/:id' element={<SingleBlog/>}/>
                   <Route path='/about' element={<About/>}/>
-
-                  <Route path='/add-blog' element={userActive?
-                        <AddBlog
-                                alert={alert}
-                                setAlert={setAlert} 
-                                setAlertClass={setAlertClass}
-                                />
-                        : ''}/>
-                  <Route path='/login' element={userActive? <Error404/> :
-                      <Login
-                            userActive={userActive}
-                            setUserActive={setUserActive}
-                            setAlert={setAlert}
-                            setAlertClass={setAlertClass}
-                            />}/>
-                  <Route path='/signup' element={userActive? <Error404/> :
-                          <Signup setAlert={setAlert}
-                                  setAlertClass= {setAlertClass}
-                                  />}/>
+                  <Route path='/add-blog' element={userActive?<AddBlog/>: <Error404/>}/>
+                  <Route path='/login' element={userActive? <Error404/> :<Login/>}/>
+                  <Route path='/signup' element={userActive? <Error404/> :<Signup/>}/>
               </Routes>
             </div>
             <Sidebar/>
@@ -66,7 +42,6 @@ function Routing() {
         
         
     </BrowserRouter>
-    </BlogContext.Provider>
   )
 }
 

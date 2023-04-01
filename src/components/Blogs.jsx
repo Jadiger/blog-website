@@ -9,7 +9,7 @@ function Blogs({blogs}) {
     function showMore() {
         setSize(size + 10)
     }
-    console.log(path);
+    // console.log(path);
   return (
     <div className="blogs">
         {

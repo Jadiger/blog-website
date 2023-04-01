@@ -2,8 +2,12 @@ import React, {useState} from 'react';
 import {  signInWithEmailAndPassword   } from 'firebase/auth';
 import { auth } from '../firebase/config';
 import { NavLink, useNavigate } from 'react-router-dom'
+import { useContext } from 'react';
+import { Context } from '../context';
  
-const Login = ({setUserActive,setAlert,setAlertClass}) => {
+const Login = () => {
+    const {dispatch} = useContext(Context)
+
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -14,23 +18,24 @@ const Login = ({setUserActive,setAlert,setAlertClass}) => {
         .then((userCredential) => {
             // Signed in
             const user = userCredential.user;
-            setAlert('Login Successful!')
-            setAlertClass('alert__success')
+            dispatch({type: 'SET_ALERT', payload : 'Login Successful!'})
+            dispatch({type: 'SET_ALERT_CLASS', payload : 'alert__success'})
             navigate("/")
             console.log(user);
             window.localStorage.setItem('useruid',user.uid)
-            setUserActive(window.localStorage.getItem('useruid'))
+            dispatch({type : 'SET_USER_ACTIVE', payload : window.localStorage.getItem('useruid')})
         })
         .catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
-            setAlert(String(error.message))
-            setAlertClass('alert__error')
+            const user = userCredential.user;
+            dispatch({type: 'SET_ALERT', payload : String(error.message)})
+            dispatch({type: 'SET_ALERT_CLASS', payload : 'alert__error'})
         });
         
         setTimeout(()=> {
-            setAlert('')
-            setAlertClass('')
+            dispatch({type: 'SET_ALERT', payload : ''})
+            dispatch({type: 'SET_ALERT_CLASS', payload : ''})
         },2000)
     }
  

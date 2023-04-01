@@ -3,15 +3,16 @@ import { storage, db } from '../firebase/config'
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage'
 import { addDoc, collection, serverTimestamp } from 'firebase/firestore'
 import Loading from '../components/Loading'
-function AddBlog({setAlert,setAlertClass}) {
+import { useContext } from 'react'
+import { Context } from '../context'
+function AddBlog() {
+  const {dispatch} = useContext(Context)
   const [category,setCategory] = useState('news')
-  const formRef = useRef(null)
   const [title,setTitle] = useState(null)
   const [text,setText] = useState(null)
   const [imgURLs, setImgURLs] = useState([])
   const [images,setImages] = useState([])
   const [loading, setLoading] = useState(false)
-  const [progress,setProgress] = useState(null)
   const [textValue,setTextValue]=useState('')
   const data = {
     title : title,
@@ -19,34 +20,29 @@ function AddBlog({setAlert,setAlertClass}) {
     category : category,
     imgURLs : imgURLs
   }
-  console.log(data);
+  // console.log(data);
   function addBlog(e) {
     if(text && title && (imgURLs.length> 0)) {
-      setAlert('Blog Added')
-      setAlertClass('alert__success')
+      dispatch({type: 'SET_ALERT', payload : 'Blog Added'})
+      dispatch({type: 'SET_ALERT_CLASS', payload : 'alert__success'})
     addDoc(collection(db, "blogs"), {
       ...data, addTime : Date.now()
     })
     e.target.reset()
     } else if (!title) {
-      setAlert('please enter a blog title')
-      setAlertClass('alert__error')
+      dispatch({type: 'SET_ALERT', payload : 'Please enter a blog title'})
+      dispatch({type: 'SET_ALERT_CLASS', payload : 'alert__error'})
     } else if (!(imgURLs.length>0)) {
-      setAlert('please add a picture to the blog')
-      setAlertClass('alert__error')
-    } else if (!text) {
-      setAlert('please add text to the blog')
-      setAlertClass('alert__error')
-    }
-    
-    else {
-      setAlert('Error')
-      setAlertClass('alert__error')
+      dispatch({type: 'SET_ALERT', payload : 'Please add a picture to the blog'})
+      dispatch({type: 'SET_ALERT_CLASS', payload : 'alert__error'})
+    } else {
+      dispatch({type: 'SET_ALERT', payload : 'Please add text to the blog'})
+      dispatch({type: 'SET_ALERT_CLASS', payload : 'alert__error'})
     }
 
     setTimeout(()=> {
-      setAlertClass('')
-      setAlert('')
+      dispatch({type: 'SET_ALERT', payload : ''})
+      dispatch({type: 'SET_ALERT_CLASS', payload : ''})
     },2000)
   }
   useEffect(()=> {
@@ -63,7 +59,7 @@ function AddBlog({setAlert,setAlertClass}) {
         setLoading(true)
         const promises = []
         Array.from(files).map((file) => {
-            console.log('loop');
+            // console.log('loop');
 
             const sotrageRef = ref(storage, `images/${file.name}`);
 
@@ -75,7 +71,6 @@ function AddBlog({setAlert,setAlertClass}) {
                     const prog = Math.round(
                         (snapshot.bytesTransferred / snapshot.totalBytes) * 100
                     );
-                    setProgress(prog);
                 },
                 (error) => console.log(error),
                 async () => {
@@ -91,9 +86,9 @@ function AddBlog({setAlert,setAlertClass}) {
         Promise.all(promises)
             .then(() => {
               setLoading(false)
-              console.log(imgURLs);
+              // console.log(imgURLs);
               
-              console.log(textValue);
+              // console.log(textValue);
             })
             .then(err => console.log(err))
     };
@@ -109,7 +104,6 @@ function AddBlog({setAlert,setAlertClass}) {
       </div>
       {loading ? <Loading/> : ''}
       <form className='addBlog__form'
-            // ref = {formRef}
             onSubmit={(e)=> {
                 e.preventDefault()
                 addBlog(e)

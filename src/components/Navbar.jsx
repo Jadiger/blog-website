@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useRef, useState } from 'react'
 import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { navList } from '../base/NavLinks';
-import { BlogContext } from '../context'
+import { Context } from '../context'
 import Loading from './Loading';
 
-function Navbar({userActive,setUserActive,alert,alertClass}) {
+function Navbar() {
   const navigate = useNavigate()
   const {pathname} = useLocation()
   useEffect(()=> {
@@ -13,7 +13,9 @@ function Navbar({userActive,setUserActive,alert,alertClass}) {
           behavior: "smooth",
         });
   },[pathname])
-    const myBlog = useContext(BlogContext)
+    const {state,dispatch} = useContext(Context)
+    const {alert,alertClass,blogs,userActive} = state
+    const myBlog = blogs
     const navRef = useRef('')
     const [navActive,setNavActive] = useState(false)
     const [burgerMenu, setBurgerMenu] = useState(false)
@@ -69,8 +71,14 @@ function Navbar({userActive,setUserActive,alert,alertClass}) {
                 userActive ? (
                   <span className="log-out" onClick={()=> {
                   window.localStorage.removeItem('useruid')
-                  setUserActive(null)
+                  dispatch({type : 'SET_USER_ACTIVE', payload : null})
+                  dispatch({type : 'SET_ALERT', payload : 'Logout successful!'})
+                  dispatch({type : 'SET_ALERT_CLASS', payload : 'alert__success'})
                   navigate('/')
+                  setTimeout(()=> {
+                      dispatch({type: 'SET_ALERT', payload : ''})
+                      dispatch({type: 'SET_ALERT_CLASS', payload : ''})
+                  },2000)
                 }}>
                   Log Out
                 </span>

@@ -40,3 +40,23 @@ img {
 .main-menu {
     width: 75%;
 }
+.error_page {
+    position: relative;
+    width: 100%;
+    height: calc(100vh - $nav-height);
+    display: flex;
+    align-items: center;
+    border : 1px solid #000;
+    img {
+        transform: translateY(-calc($nav-height/2));
+    }
+    .go_home {
+        position: absolute;
+        width: 100%;
+        border: 1px solid #000;
+        height: calc($nav-height - 15px);
+        left: 0;
+        bottom: -6px;
+        transform: translateY(100%);
+    }
+}
